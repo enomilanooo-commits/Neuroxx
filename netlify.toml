@@ -1,0 +1,20 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "http://neurox.one/*"
+  to = "https://neurox.one/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.neurox.one/*"
+  to = "https://neurox.one/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.neurox.one/*"
+  to = "https://neurox.one/:splat"
+  status = 301
+  force = true

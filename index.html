@@ -1,0 +1,950 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neuro X  AI Assistants for Service Businesses</title>
+  <meta name="description" content="Neuro X builds fast, modern websites and 24/7 AI assistants that qualify, quote, book and hand off." />
+  <link rel="canonical" href="https://neurox.one/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#060b12" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://neurox.one/" />
+  <meta property="og:title" content="Neuro X â€” AI Assistants for Service Businesses" />
+  <meta property="og:description" content="Neuro X builds fast, modern websites and 24/7 AI assistants that qualify, quote, book and hand off." />
+  <meta property="og:image" content="https://neurox.one/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Neuro X â€” AI Assistants for Service Businesses" />
+  <meta name="twitter:description" content="Neuro X builds fast, modern websites and 24/7 AI assistants that qualify, quote, book and hand off." />
+  <meta name="twitter:image" content="https://neurox.one/og.png" />
+  <link rel="preload" href="assets/hero-bg.jpg" as="image" fetchpriority="high">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#060b12;         /* deep neon navy */
+      --panel:#0a121b;      /* cards & header */
+      --text:#e8f3ff;       /* main text */
+      --muted:#bcd6ff;      /* secondary text */
+      --brand:#2aa8ff;      /* primary brand (neon blue) */
+      --brand-2:#00e0ff;    /* secondary accent (cyan) */
+      --line:rgba(255,255,255,.09);
+      --glow:rgba(0,200,255,.28);
+      --shadow: 0 6px 20px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Header */
+    .header{position:sticky;top:0;z-index:50;background:rgba(14,20,27,.72);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--line)}
+    .bar{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.4px}
+    .logo-badge{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--brand), transparent 60%),radial-gradient(circle at 70% 70%, var(--brand-2), transparent 55%);box-shadow:0 0 24px var(--glow)}
+    .nav{display:flex;gap:18px}
+    .nav a{color:var(--muted);opacity:.9}
+    .nav a:hover{opacity:1;text-decoration:underline}
+    .cta{padding:10px 14px;border:1px solid rgba(42,198,255,.4);background:rgba(42,198,255,.08);border-radius:12px}
+
+    /* Mobile menu */
+    .menu-btn{display:none}
+    @media (max-width:880px){      .nav{display:none}      .menu-btn{display:inline-flex;gap:8px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:10px}
+      .drawer{display:none}
+      .drawer.open{display:block}
+      .drawer a{display:block;padding:12px 18px;border-top:1px solid var(--line);background:rgba(255,255,255,.02)}
+    }
+
+    /* Hero with image background */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      min-height:86vh;
+      display:grid;
+      place-items:center;
+      background-color:var(--bg);
+      background-image:
+        linear-gradient(180deg, rgba(6,11,18,.28), rgba(6,11,18,.46)),
+        url("assets/hero-bg.jpg");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
+    /* keep a soft blue/cyan glow above the image */
+    .hero::before{content:"";position:absolute;inset:-30% -20% auto -20%;height:560px;filter:blur(70px);pointer-events:none;background:
+      radial-gradient(820px 340px at 30% 0%, rgba(42,168,255,.28), transparent 60%),
+      radial-gradient(780px 320px at 75% 5%, rgba(0,224,255,.22), transparent 60%),
+      radial-gradient(560px 240px at 50% 10%, rgba(255,255,255,.06), transparent 60%);
+    }
+    /* additional dark overlay for readability */
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(6,11,18,0) 0%, rgba(6,11,18,.26) 55%, rgba(6,11,18,.62) 100%);
+      pointer-events:none;
+      z-index:1;
+    }
+    .hero-wrap{max-width:1180px;margin:0 auto;padding:84px 18px 46px;display:grid;gap:24px;place-items:center;text-align:center;position:relative;z-index:2}
+    /* Optional subtle text glow to aid readability */
+    .hero h1, .hero p { text-shadow: 0 1px 0 rgba(0,0,0,.25); }
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+    .hero h1{font-size:44px;line-height:1.1;margin:10px 0}
+    .hero p{max-width:760px;color:var(--muted);margin:0 auto 10px}
+    .btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+    .btn{padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
+    .btn.primary{border-color:rgba(42,198,255,.5);background:rgba(42,198,255,.1)}
+
+    /* Sections */
+    .section{max-width:1180px;margin:0 auto;padding:56px 18px}
+    .section h2{font-size:28px;margin:0 0 10px}
+    .muted{color:var(--muted)}
+    /* Cleaning section background (optional) */
+    #cleaning{
+      background:
+        linear-gradient(180deg, rgba(6,11,18,.75), rgba(6,11,18,.9)),
+        url('assets/cleaning-bg.png') center/cover no-repeat;
+      padding-top:72px;
+      padding-bottom:72px;
+      border-radius:16px;
+    }
+
+    /* Features grid */
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+    .card{grid-column:span 4;padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+    .card h3{margin:0 0 6px;font-size:18px}
+    .card p{margin:0;color:var(--muted)}
+    @media (max-width:980px){.card{grid-column:span 6}}
+    @media (max-width:620px){.card{grid-column:span 12}}
+
+    /* Pricing */
+    .pricing{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
+    .plan{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:18px}
+    .price{font-size:34px;font-weight:800;margin:6px 0}
+    @media (max-width:900px){.pricing{grid-template-columns:1fr}}
+
+    /* FAQ */
+    .faq{max-width:860px;margin:0 auto}
+    .qa{border-top:1px solid var(--line)}
+    .qa button{all:unset;display:flex;justify-content:space-between;gap:16px;cursor:pointer;padding:16px 0}
+    .qa p{display:none;margin:0 0 16px;color:var(--muted)}
+    .qa.open p{display:block}
+
+    /* ---- Typography & Rendering ---- */
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    body{
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Headings */
+    .hero h1{
+      font-weight: 800;
+      /* responsive size: 36  56 depending on viewport */
+      font-size: clamp(36px, 5.2vw, 56px)
+;  line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 10px 0 8px;
+      color:#ffffff;
+      /* stronger shadow for readability over photos */
+      text-shadow: 0 2px 6px rgba(0,0,0,.5), 0 1px 0 rgba(0,0,0,.35);
+    }
+
+    /* Lead paragraph under H1 */
+    .hero p{
+      max-width: 780px;
+      margin: 0 auto 10px;
+      color: #eef5ff;             /* brighter for contrast */
+      font-size: clamp(15px, 1.9vw, 18px);
+      /* subtle background chip for readability */
+      background: rgba(10,18,27,.22);
+      border: 1px solid #000;
+      backdrop-filter: saturate(140%) blur(6px);
+      padding: 10px 12px;
+      border-radius: 12px;
+      display: inline-block;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,.22);
+    }
+
+    /* Eyebrow chip */
+    .eyebrow{
+      color: #cfe3ff;
+      background: rgba(10,18,27,.45);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: saturate(140%) blur(8px);
+    }
+
+    /* Buttons */
+    .btn.primary{
+      border-color: rgba(42,168,255,.55);
+      background: rgba(42,168,255,.14);
+    }
+
+    /* KPI cards  a touch more contrast */
+    .card{
+      background: rgba(10,18,27,.88);
+      border: 1px solid #000;
+      box-shadow: 0 6px 20px rgba(0,0,0,.25);
+    }
+    
+
+    
+
+    /* ==== Comparison section ==== */
+    .compare { max-width: 1180px; margin: 0 auto; padding: 56px 18px; }
+    .compare h2 { font-size: 28px; margin: 0 0 10px; }
+    .compare .wrap { display: grid; gap: 18px; grid-template-columns: 1.2fr .8fr; }
+    @media (max-width: 980px){ .compare .wrap{ grid-template-columns: 1fr; } }
+    .chart-card, .facts { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 18px; box-shadow: var(--shadow); }
+    .legend { display:flex; gap:12px; align-items:center; margin-bottom:8px; flex-wrap:wrap; }
+    .badge { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.02); color:var(--muted); }
+    .dot { width:10px; height:10px; border-radius:50%; }
+    .facts ul { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+    .facts li { display:grid; grid-template-columns: 24px 1fr; gap:10px; align-items:flex-start; }
+    .facts svg { opacity:.9 }
+    .note { color: var(--muted); font-size: 13px; margin-top: 10px; }
+    .chart-card:hover, .facts:hover{ border-color: rgba(42,168,255,.45); box-shadow: 0 8px 24px rgba(0,0,0,.35), 0 0 28px rgba(0,200,255,.18); }
+    .kpi-pill{ justify-self:end; padding:2px 8px; border:1px solid rgba(255,255,255,.12); border-radius:999px; color:#bcd6ff; font-size:12px; background:rgba(255,255,255,.03); }
+
+    /* Footer */
+    .footer{border-top:1px solid var(--line);padding:24px 18px;text-align:center;color:var(--muted)}
+  </style>
+  <style>
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+    /* Offset for sticky header */
+    :root { --header-h: 64px; }
+    #products, #contact, #about, #top { scroll-margin-top: var(--header-h); }
+    /* Active link styling */
+    .nav a.active { color: #e9f4ff; text-decoration: underline; }
+  </style>
+  <style>
+    /* About cards: neon flash on hover */
+    #about .card{
+      position:relative;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      will-change: transform, box-shadow;
+    }
+    #about .card::after{
+      content:""; position:absolute; inset:-1px; border-radius:14px; pointer-events:none; z-index:0;
+      background: radial-gradient(120% 100% at 50% -10%, rgba(0,230,255,.30), transparent 60%),
+                  radial-gradient(120% 100% at 50% 110%, rgba(35,168,255,.25), transparent 60%);
+      opacity:0; filter: blur(14px); transition: opacity .18s ease;
+    }
+    #about .card > *{ position:relative; z-index:1 }
+    #about .card:hover, #about .card:focus-within{
+      transform: translateY(-2px);
+      border-color: rgba(35,168,255,.55);
+      box-shadow:
+        0 8px 24px rgba(0,0,0,.35),
+        0 0 0 1px rgba(35,168,255,.35),
+        0 0 28px rgba(0,200,255,.28);
+    }
+    #about .card:hover::after, #about .card:focus-within::after{
+      opacity:1; animation: neonFlash 800ms ease-out 1;
+    }
+    @media (prefers-reduced-motion: reduce){
+      #about .card, #about .card::after{ transition:none; animation:none !important }
+    }
+  </style>
+  <style>
+    /* === Neon flash on KPI cards === */
+    .kpi{
+      position: relative;
+      border-radius: 16px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      will-change: transform, box-shadow;
+      box-shadow: 0 6px 20px rgba(0,0,0,.25);
+    }
+    .kpi::after{
+      content:"";
+      position:absolute; inset:-1px;
+      border-radius: 18px;
+      pointer-events:none;
+      background: radial-gradient(120% 100% at 50% -10%, rgba(0,224,255,.30), transparent 60%),
+                  radial-gradient(120% 100% at 50% 110%, rgba(42,168,255,.25), transparent 60%);
+      opacity: 0;
+      filter: blur(14px);
+      transition: opacity .18s ease;
+      z-index: 0;
+    }
+    .kpi > *{ position: relative; z-index: 1; }
+    .kpi:hover,
+    .kpi:focus-within{
+      transform: translateY(-2px);
+      border-color: rgba(42,168,255,.55);
+      box-shadow:
+        0 8px 24px rgba(0,0,0,.35),
+        0 0 0 1px rgba(42,168,255,.35),
+        0 0 28px rgba(0,200,255,.28);
+    }
+    .kpi:hover::after,
+    .kpi:focus-within::after{
+      opacity: 1;
+      animation: neonFlash 800ms ease-out 1;
+    }
+    @keyframes neonFlash{
+      0%   { opacity: 0; filter: blur(20px); }
+      20%  { opacity: 1; filter: blur(10px); }
+      60%  { opacity: .75; filter: blur(14px); }
+      100% { opacity: 1; filter: blur(14px); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .kpi, .kpi::after{ transition: none; animation: none !important; }
+    }
+    /* ==== Products (io.net style glowing tiles) ==== */
+    .products { max-width:1180px; margin:0 auto; padding:56px 18px; }
+    .products h2 { font-size:28px; margin:0 0 10px; }
+    .prod-grid { display:grid; gap:18px; grid-template-columns:repeat(3,1fr); }
+    @media (max-width:980px){ .prod-grid{ grid-template-columns:1fr; } }
+    .tile {
+      position:relative; overflow:hidden; border-radius:20px;
+      background: linear-gradient(180deg,#0e1622,#0a121b);
+      border:1px solid rgba(255,255,255,.08);
+      padding:22px; box-shadow: 0 12px 40px rgba(0,0,0,.35);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      isolation:isolate;
+    }
+    .tile:hover{
+      transform: translateY(-4px);
+      border-color: rgba(42,168,255,.45);
+      box-shadow: 0 18px 60px rgba(0,0,0,.45), 0 0 42px rgba(0,200,255,.18);
+    }
+    .tile::before{
+      content:""; position:absolute; inset:18px; border-radius:16px; z-index:0;
+      background:
+        radial-gradient(120% 120% at 50% 110%, rgba(255,255,255,.08), transparent 65%),
+        linear-gradient(180deg, rgba(255,255,255,.06), transparent 40%);
+    }
+    .tile h3{ margin:0 0 6px; font-size:18px; position:relative; z-index:1 }
+    .tile p{ margin:0; color:var(--muted); position:relative; z-index:1 }
+    /* Avatar styling (glossy + neon) */
+    .icon.avatar{
+      width:96px; height:96px; border-radius:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10);
+      display:grid; place-items:center;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.05),
+        0 10px 24px rgba(0,0,0,.35),
+        0 0 32px rgba(0,200,255,.18);
+      transition: transform .25s ease, box-shadow .25s ease;
+      margin-bottom:12px;
+      position:relative; z-index:1;
+    }
+    .tile:hover .icon.avatar{
+      transform: translateY(-2px);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.05),
+        0 14px 36px rgba(0,0,0,.45),
+        0 0 48px rgba(0,200,255,.24);
+    }
+    .icon.avatar svg{ width:78px; height:78px; opacity:.98; transition: transform .25s ease, filter .25s ease }
+    .tile:hover .icon.avatar svg{ transform: translateY(-1px); filter: drop-shadow(0 0 12px rgba(0,200,255,.22)) }
+    /* --- Contact: social links --- */
+    .socials{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:14px; }
+    .social{ display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.02); color:var(--text); text-decoration:none; transition: border-color .2s ease, box-shadow .2s ease, transform .15s ease; }
+    .social:hover{ border-color:rgba(42,168,255,.45); box-shadow:0 0 24px rgba(0,200,255,.18); transform: translateY(-1px); }
+    .social svg{ width:18px; height:18px; opacity:.95; }
+    .contact-email{ margin-top:10px; color:var(--muted); }
+    .contact-email a{ color:#cfe3ff; text-decoration:underline dotted; }
+  </style>
+  <style>
+    /* --- remove background card behind hero paragraph --- */
+    .hero p{
+      /* kill any card styles that slipped in */
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+
+    /* --- black outline around hero text for contrast --- */
+    /* Headline: stronger stroke */
+    .hero h1{
+      /* show stroke first, then fill (makes outline crisp) */
+      paint-order: stroke fill;
+      -webkit-text-stroke: 1px rgba(0,0,0,.9);
+      /* fallback for browsers that ignore text-stroke */
+      text-shadow:
+        0 1px 0 rgba(0,0,0,.7),
+        1px 0 0 rgba(0,0,0,.7),
+        0 -1px 0 rgba(0,0,0,.7),
+        -1px 0 0 rgba(0,0,0,.7),
+        0 0 6px rgba(0,0,0,.35);
+    }
+
+    /* Paragraph: subtle, thinner stroke */
+    .hero p{
+      paint-order: stroke fill;
+      -webkit-text-stroke: .35px rgba(0,0,0,.85);
+      text-shadow:
+        0 .6px 0 rgba(0,0,0,.6),
+        .6px 0 0 rgba(0,0,0,.6),
+        0 -.6px 0 rgba(0,0,0,.6),
+        -.6px 0 0 rgba(0,0,0,.6);
+    }
+  </style>
+    <style>
+    /* ==== Neon Blue / Dark Navy Palette (override) ==== */
+    :root{
+      --bg:#040a12;          /* deeper navy background */
+      --panel:#07121c;       /* card/header panels */
+      --panel-2:#0a1624;     /* alt panel */
+      --text:#e9f4ff;        /* primary text */
+      --muted:#b8d2ff;       /* secondary text */
+      --line:rgba(255,255,255,.10);
+
+      /* neon accents */
+      --brand:#23a8ff;       /* bright neon blue */
+      --brand-2:#00e6ff;     /* cyan edge */
+      --brand-deep:#0b5fb3;  /* deep electric blue */
+
+      --glow-shadow:0 0 32px rgba(0,198,255,.25);
+      --glow-soft:0 0 20px rgba(35,168,255,.18);
+    }
+
+    /* page background + subtle vignette */
+    html,body{
+      background:
+        radial-gradient(1200px 600px at 50% -10%, rgba(0,230,255,.10), transparent 60%),
+        linear-gradient(180deg, #040a12, #050b13);
+      color:var(--text);
+    }
+
+    /* header/nav */
+    .header{ background:rgba(7,18,28,.72); border-bottom:1px solid var(--line); }
+    .logo-badge{
+      background:
+        radial-gradient(circle at 30% 30%, var(--brand), transparent 60%),
+        radial-gradient(circle at 70% 70%, var(--brand-2), transparent 55%);
+      box-shadow: var(--glow-soft);
+    }
+
+    /* hero glow tweaks */
+    .hero::before{
+      content:"";
+      position:absolute; inset:-30% -20% auto -20%; height:560px; filter:blur(70px);
+      background:
+        radial-gradient(820px 340px at 30% 0%, rgba(35,168,255,.30), transparent 60%),
+        radial-gradient(780px 320px at 75% 5%, rgba(0,230,255,.24), transparent 60%),
+        radial-gradient(560px 240px at 50% 10%, rgba(255,255,255,.06), transparent 60%);
+      pointer-events:none;
+    }
+
+    /* links / buttons */
+    .btn{ border:1px solid var(--line); }
+    .btn.primary{
+      border-color: rgba(35,168,255,.55);
+      background: linear-gradient(180deg, rgba(35,168,255,.18), rgba(0,230,255,.10));
+      box-shadow: var(--glow-soft);
+    }
+    .btn.primary:hover{
+      box-shadow: var(--glow-shadow);
+      transform: translateY(-1px);
+    }
+
+    /* KPI cards */
+    .card{
+      background: linear-gradient(180deg, rgba(7,18,28,.92), rgba(7,18,28,.88));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 8px 28px rgba(0,0,0,.35);
+    }
+    .kpi:hover{
+      border-color: rgba(35,168,255,.45);
+      box-shadow: 0 12px 42px rgba(0,0,0,.45), var(--glow-soft);
+    }
+
+    /* product tiles */
+    .tile{
+      background: linear-gradient(180deg,#0b1726,#07121c);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .icon.avatar{
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.05),
+        0 12px 28px rgba(0,0,0,.35),
+        0 0 38px rgba(0,200,255,.22);
+    }
+
+    /* badges / chips */
+    .pill, .eyebrow{
+      background: rgba(10,18,27,.45);
+      border:1px solid rgba(255,255,255,.12);
+      color:#cfe6ff;
+      backdrop-filter: saturate(140%) blur(8px);
+    }
+
+    /* links on dark bg */
+    a{ color:#cfe6ff; }
+    a:hover{ color:#e6f4ff; text-decoration: underline; }
+
+    /* strong divider for sections if needed */
+    .section{ border-top:1px solid rgba(255,255,255,.06); }
+
+    /* gradient border utility */
+    .border-neon{
+      position:relative;
+      border:1px solid transparent;
+      background:
+        linear-gradient(var(--panel), var(--panel)) padding-box,
+        linear-gradient(135deg, var(--brand), var(--brand-2)) border-box;
+      box-shadow: var(--glow-soft);
+      border-radius:16px;
+    }
+  </style>
+  <style>
+    /* ===== Premium "chip" avatars (glass + neon + motion) ===== */
+    .icon.avatar{
+      width:120px; height:120px; border-radius:22px;
+      position:relative; display:grid; place-items:center; isolation:isolate;
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.05),
+        0 12px 28px rgba(0,0,0,.35),
+        0 0 38px rgba(0,200,255,.22);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    /* inner glass highlight */
+    .icon.avatar::before{
+      content:""; position:absolute; inset:12px 12px 22px 12px; border-radius:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      pointer-events:none; z-index:0;
+    }
+    /* neon ring glow */
+    .icon.avatar::after{
+      content:""; position:absolute; inset:-2px; border-radius:24px; z-index:0;
+      background:
+        radial-gradient(140% 120% at 50% -10%, rgba(0,230,255,.28), transparent 60%),
+        radial-gradient(140% 120% at 50% 110%, rgba(35,168,255,.24), transparent 60%);
+      opacity:.0; filter: blur(16px); transition: opacity .25s ease;
+      pointer-events:none;
+    }
+    .tile:hover .icon.avatar{ transform: translateY(-2px); box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.05),
+        0 16px 36px rgba(0,0,0,.45),
+        0 0 48px rgba(0,200,255,.26);
+    }
+    .tile:hover .icon.avatar::after{ opacity:1 }
+    .icon.avatar svg{ width:78px; height:78px; transition: transform .25s ease, filter .25s ease }
+    .tile:hover .icon.avatar svg{ transform: translateY(-1px); filter: drop-shadow(0 0 12px rgba(0,200,255,.22)) }
+    @media (prefers-reduced-motion: reduce){
+      .icon.avatar, .icon.avatar::after, .icon.avatar svg{ transition:none !important }
+    }
+  </style>
+  <style>
+    /* ===== Premium chip: ambient glow + parallax + grid ===== */
+    .icon.avatar{
+      display:grid; place-items:center; position:relative; overflow:hidden;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.05),
+        0 12px 28px rgba(0,0,0,.35),
+        0 0 40px rgba(0,200,255,.22);
+      transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+      isolation:isolate;
+    }
+    .tile:hover .icon.avatar{
+      transform: translateY(-2px);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.05),
+        0 18px 40px rgba(0,0,0,.5),
+        0 0 60px rgba(0,200,255,.26);
+    }
+    /* ambient glow under the chip */
+    .icon.avatar::after{
+      content:""; position:absolute; left:14%; right:14%; bottom:-10px; height:32px;
+      background: radial-gradient(closest-side, rgba(255,255,255,.9), rgba(255,255,255,0));
+      filter: blur(10px); opacity:.9; z-index:0; pointer-events:none;
+    }
+    /* subtle parallax on hover */
+    .tile:hover .icon.avatar svg{ transform: translateY(-1px); }
+    .icon.avatar svg{ width:68px; height:68px; transition: transform .25s ease; }
+    /* animated neon pulse for key accents */
+    @keyframes pulse-neon{
+      0%,100%{ filter: drop-shadow(0 0 0 rgba(0,200,255,0)); opacity:.95; }
+      50%   { filter: drop-shadow(0 0 10px rgba(0,200,255,.55)); opacity:1; }
+    }
+    .neon-pulse{ animation: pulse-neon 2.2s ease-in-out infinite; }
+    /* divider grid lines inside the chip (subtle) */
+    .icon-grid{
+      position:absolute; inset:0; opacity:.07; mix-blend-mode:screen; z-index:0;
+      background:
+        repeating-linear-gradient(0deg, #fff, #fff 1px, transparent 1px, transparent 18px),
+        repeating-linear-gradient(90deg, #fff, #fff 1px, transparent 1px, transparent 18px);
+    }
+    /* SalesBot bars: gentle lift on hover (3rd tile) */
+    .tile:hover:nth-of-type(3) rect[x="14"],
+    .tile:hover:nth-of-type(3) rect[x="24"],
+    .tile:hover:nth-of-type(3) rect[x="34"]{
+      transform: translateY(-2px);
+      transition: transform .25s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="site-header">
+    <div class="bar">
+      <!-- Logo: go to top (and optional refresh) -->
+      <a href="#top" class="logo" id="logoLink" aria-label="Neuro X  back to top">
+        <span>NEURO X</span>
+      </a>
+      <!-- Desktop nav -->
+      <nav class="nav" aria-label="Main">
+        <a href="#products">Product</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About us</a>
+      </nav>
+      <!-- Mobile menu button -->
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer">Menu </button>
+    </div>
+    <!-- Mobile drawer -->
+    <div class="drawer" id="drawer" role="dialog" aria-label="Mobile menu">
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="hero-wrap">
+      <!-- Main heading -->
+      <h1>AI Chatbots that Grow Your Business</h1>
+      <p>We design industry-specific assistants that automate booking, support, and salesso your business works while you sleep.</p>
+
+      
+
+      
+      
+
+      <!-- KPI strip -->
+      <div class="grid" style="margin-top:18px;grid-template-columns:repeat(12,1fr);gap:12px">
+        <div class="card kpi" style="grid-column:span 4">
+          <h3>1000 concurrency</h3>
+          <p>Handle up to 1,000 conversations at the same time — a human agent typically juggles only 23 at once</p>
+        </div>
+        <div class="card kpi" style="grid-column:span 4">
+          <h3>24/7, no wait</h3>
+          <p>Always-on replies in seconds  nights, weekends, holidays.</p>
+        </div>
+        <div class="card kpi" style="grid-column:span 4">
+          <h3>Multilingual</h3>
+          <p>Auto-detects language, keeps your brand name intact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="about">
+    <h2>About Neuro X</h2>
+
+    <p class="muted">We design, build, and host multilingual AI chatbots that answer instantly, qualify leads, generate quotes, book jobs, and hand off to your team. Our first product, Cleaning Bot, helps cleaning companies turn more visitors into paying customers by handling up to 1,000 conversations in parallel, 24/7.</p>
+
+    <div class="grid" style="margin-top:14px;grid-template-columns:1fr">
+      <div class="card" style="border-radius:14px;">
+        Discovery &amp; KPI mapping: chatbot objectives tied to real business metrics
+      </div>
+      <div class="card" style="border-radius:14px;">
+        Private data ingestion (docs, FAQs, SOPs) with retrieval &amp; access control
+      </div>
+      <div class="card" style="border-radius:14px;">
+        Multi-channel: Website widget, WhatsApp, Telegram, Facebook Messenger
+      </div>
+      <div class="card" style="border-radius:14px;">
+        Workflows: quotes, booking, payments, reminders, CRM ticketing
+      </div>
+      <div class="card" style="border-radius:14px;">
+        Security &amp; privacy by design, auditability, role-based controls
+      </div>
+      <div class="card" style="border-radius:14px;">
+        Analytics &amp; A/B testing to continuously improve conversion
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="products">
+    <h2>Products</h2>
+    <p class="muted">Choose a purpose-built bot and start fast.</p>
+    <div class="prod-grid" style="margin-top:16px">
+      <article class="tile">
+        <h3>CleanBot</h3>
+        <p>Quotes + bookings for cleaning businesses. Collects job details, estimates, and books slots.</p>
+      </article>
+      <article class="tile">
+        <h3>SupportBot</h3>
+        <p>Instant answers, triage, and handoff. Cuts response times from minutes to seconds, 24/7.</p>
+      </article>
+      <article class="tile">
+        <h3>SalesBot</h3>
+        <p>Qualifies leads, schedules demos, and follows up. Boosts conversion with consistent outreach.</p>
+      </article>
+    </div>
+  </section>
+
+  
+
+  
+
+  <!-- Pricing -->
+  
+
+  
+
+  
+
+  <section class="compare" id="compare">
+    <h2>AI Chatbot vs Human Agent</h2>
+    <p class="muted">Why smart automation wins on speed, scale, costand results.</p>
+    <div class="wrap">
+      <!-- Chart -->
+      <article class="chart-card">
+        <div class="legend">
+          <span class="badge"><span class="dot" style="background:linear-gradient(90deg,var(--brand),var(--brand-2))"></span>AI Chatbot</span>
+          <span class="badge"><span class="dot" style="background:#5b6b82"></span>Human Agent</span>
+        </div>
+        <canvas id="compareChart" height="260"></canvas>
+        <div class="note">Values are illustrative; well tune with your real numbers after a week of traffic.</div>
+      </article>
+
+      <!-- Quick facts -->
+      <aside class="facts">
+        <ul>
+          <li>
+            <!-- lightning icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke="url(#g1)" stroke-width="1.6"/><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2aa8ff"/><stop offset="1" stop-color="#00e0ff"/></linearGradient></defs></svg>
+            <div>Replies in seconds, not minutesno queues, no tickets. <span class="kpi-pill">24/7</span></div></li>
+          <li>
+            <!-- stack icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="4" rx="1.5" stroke="url(#g2)"/><rect x="4" y="10" width="16" height="4" rx="1.5" stroke="url(#g2)"/><rect x="4" y="16" width="16" height="4" rx="1.5" stroke="url(#g2)"/><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2aa8ff"/><stop offset="1" stop-color="#00e0ff"/></linearGradient></defs></svg>
+            <div>Scales to thousands of simultaneous conversations without extra headcount. <span class="kpi-pill">1000+ chats</span></div>
+          </li>
+          <li>
+            <!-- target icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="url(#g3)"/><circle cx="12" cy="12" r="3" fill="url(#g3)"/><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2aa8ff"/><stop offset="1" stop-color="#00e0ff"/></linearGradient></defs></svg>
+            <div>Qualifies leads consistently and pushes upsells (deep clean, add-ons) automatically. <span class="kpi-pill">+25 leads</span></div>
+          </li>
+          <li>
+            <!-- wallet icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="url(#g4)"/><circle cx="16.5" cy="12" r="1.5" fill="url(#g4)"/><defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2aa8ff"/><stop offset="1" stop-color="#00e0ff"/></linearGradient></defs></svg>
+            <div>Lowers support cost per chat and reduces missed-sales from slow responses. <span class="kpi-pill">-6080% cost</span></div>
+          </li>
+          <li>
+            <!-- globe icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="url(#g5)"/><path d="M3 12h18M12 3c3.5 3.5 3.5 14.5 0 18M7 5c2 2 2 12 0 14" stroke="url(#g5)"/><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2aa8ff"/><stop offset="1" stop-color="#00e0ff"/></linearGradient></defs></svg>
+            <div>Multilingual out of the box; keeps your brand name intact. <span class="kpi-pill">Auto-detect</span></div>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact</h2>
+    <p class="muted">Prefer email or socials? Reach out below.</p>
+    <!-- Social links -->
+    <div class="socials" aria-label="Social links">
+      <!-- Instagram -->
+      <a class="social" href="https://www.instagram.com/neuroxchatbot/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @neuroxchatbot">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <defs><linearGradient id="g-ig" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2aa8ff"/><stop offset="1" stop-color="#00e0ff"/></linearGradient></defs>
+          <rect x="3" y="3" width="18" height="18" rx="5" stroke="url(#g-ig)" stroke-width="1.6"/>
+          <circle cx="12" cy="12" r="4.2" stroke="url(#g-ig)" stroke-width="1.6"/>
+          <circle cx="17" cy="7" r="1.4" fill="url(#g-ig)"/>
+        </svg>
+      </a>
+
+      <!-- X (Twitter) -->
+      <a class="social" href="https://x.com/NeuroXbot" target="_blank" rel="noopener noreferrer" aria-label="X @NeuroXbot">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <defs><linearGradient id="g-x" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2aa8ff"/><stop offset="1" stop-color="#00e0ff"/></linearGradient></defs>
+          <path d="M4 4l16 16M20 4L4 20" stroke="url(#g-x)" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </a>
+
+      <!-- LinkedIn -->
+      <a class="social" href="https://www.linkedin.com/in/neuro-x-chat-bot-0981ba1b3/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Neuro X">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <defs><linearGradient id="g-in" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2aa8ff"/><stop offset="1" stop-color="#00e0ff"/></linearGradient></defs>
+          <rect x="3" y="3" width="18" height="18" rx="3" stroke="url(#g-in)" stroke-width="1.6"/>
+          <rect x="6.5" y="9.5" width="2.5" height="8" fill="url(#g-in)"/>
+          <circle cx="7.7" cy="7.4" r="1.25" fill="url(#g-in)"/>
+          <path d="M12 17.5v-4.2c0-1.7 1.2-3 2.8-3s2.7 1 2.7 3.1v4.1" stroke="url(#g-in)" stroke-width="1.6"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Email -->
+    <p class="contact-email">
+      Email: <a href="mailto:neuroxchatbot@gmail.com">neuroxchatbot@gmail.com</a>
+    </p>
+  </section>
+ 
+
+
+  <script>
+  (() => {
+    // Header height -> CSS var for scroll offsets
+    const header = document.getElementById('site-header');
+    const setHeaderH = () => {
+      const h = header?.offsetHeight || 64;
+      document.documentElement.style.setProperty('--header-h', h + 'px');
+    };
+    window.addEventListener('load', setHeaderH);
+    window.addEventListener('resize', setHeaderH);
+
+    // Mobile drawer
+    const btn = document.getElementById('menuBtn');
+    const drawer = document.getElementById('drawer');
+    if (btn && drawer) {
+      btn.addEventListener('click', () => {
+        const open = drawer.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      drawer.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          drawer.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // Logo: default jumps to #top; uncomment to hard refresh
+    const logo = document.getElementById('logoLink');
+    if (logo) {
+      logo.addEventListener('click', (e) => {
+        // e.preventDefault();
+        // window.location.hash = '#top';
+        // window.location.reload();
+      });
+    }
+
+    // Active nav link based on scroll position
+    const sections = [
+      { id: 'products', link: null },
+      { id: 'contact',  link: null },
+      { id: 'about',    link: null }
+    ];
+    sections.forEach(s => {
+      s.el = document.getElementById(s.id);
+      s.link = document.querySelector(`.nav a[href="#${s.id}"]`);
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const s = sections.find(x => x.el === entry.target);
+        if (!s || !s.link) return;
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+          s.link.classList.add('active');
+        }
+      });
+    }, { rootMargin: `-${(header?.offsetHeight||64)+10}px 0px -60% 0px`, threshold: 0.01 });
+    sections.forEach(s => s.el && observer.observe(s.el));
+
+    // Existing FAQ toggle (if present)
+    document.querySelectorAll('.qa button').forEach(b => {
+      b.addEventListener('click', () => {
+        const qa = b.closest('.qa');
+        if (qa) qa.classList.toggle('open');
+      });
+    });
+  })();
+  </script>
+
+  <script>
+  /* ===== Comparison Chart ===== */
+  (function(){
+    const el = document.getElementById('compareChart');
+    if(!el || !window.Chart) return;
+
+    // Metrics are normalized 0..100 (higher is better).
+    const labels = [
+      'Speed',
+      'Scale',
+      'Lead Capture',
+      'Conversion Uplift',
+      'Availability',
+      'Cost Efficiency'
+    ];
+
+    const ai =    [95, 95, 90, 70, 100, 85];
+    const human = [55, 25, 60, 45, 40, 45];
+
+    const ctx = el.getContext('2d');
+    const gradientAI = ctx.createLinearGradient(0,0,0,260);
+    gradientAI.addColorStop(0, 'rgba(42,168,255,.55)');
+    gradientAI.addColorStop(1, 'rgba(0,224,255,.35)');
+    const gradientHuman = ctx.createLinearGradient(0,0,0,260);
+    gradientHuman.addColorStop(0, 'rgba(91,107,130,.6)');
+    gradientHuman.addColorStop(1, 'rgba(91,107,130,.3)');
+
+    new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'AI Chatbot',
+            data: ai,
+            fill: true,
+            backgroundColor: 'rgba(0,200,255,.12)',
+            borderColor: gradientAI,
+            pointBackgroundColor: '#00e0ff',
+            borderWidth: 2
+          },
+          {
+            label: 'Human Agent',
+            data: human,
+            fill: true,
+            backgroundColor: 'rgba(91,107,130,.08)',
+            borderColor: gradientHuman,
+            pointBackgroundColor: '#5b6b82',
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            angleLines: { color: 'rgba(255,255,255,.06)' },
+            grid: { color: 'rgba(255,255,255,.06)' },
+            suggestedMin: 0,
+            suggestedMax: 100,
+            pointLabels: { color: '#cfe3ff', font: { size: 12 } },
+            ticks: { display: false }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(10,18,27,.95)',
+            borderColor: 'rgba(255,255,255,.12)',
+            borderWidth: 1,
+            padding: 10,
+            displayColors: false
+          }
+        },
+        elements: { line: { tension: .2 } }
+      }
+    });
+  })();
+  </script>
+
+  </body>
+  </html>
+
+
+
+
+
+
+
+
