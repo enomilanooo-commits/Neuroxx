@@ -23,6 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
   <style>
     :root{
       --bg:#060b12;         /* deep neon navy */
@@ -958,6 +959,116 @@
     });
   })();
   </script>
+
+  <!-- Force chat widget bottom-right (removed old CSS override in favor of runtime fix) -->
+
+  <!-- Neuro X Chat Widget -->
+  <script 
+    src="https://cleaning-bot-production-0d1b.up.railway.app/widget.js?v=20251018"
+    data-token="neurox2025supersecurechatbottoken1234"
+    data-tenant="neurox"
+    data-position="right"
+    data-draggable="true"
+    defer>
+  </script>
+
+  <!-- Draggable bottom-right launcher: pins by default, drag+persist via localStorage -->
+  <script>
+  (function(){
+    const TEXT_MATCH = /ask\s+neuro\s*x/i; // fallback finder by text
+    const STORAGE_KEY = 'neurox-launcher-pos';
+    
+    function findLauncher(){
+      // Prefer explicit selectors, include injected widget launchers
+      let el = document.querySelector('#ask-neurox, #neurox-chatbot-btn, .neurox-chatbot-btn, .neurox-widget-button, .nxw-launcher, .cbw-button');
+      if (el) return el;
+      // Fallback: find by text on common elements
+      const candidates = Array.from(document.querySelectorAll('a,button,div,span'));
+      return candidates.find(n => TEXT_MATCH.test((n.textContent||'').trim()));
+    }
+    
+    function pinDefault(el){
+      el.style.position = 'fixed';
+      el.style.right = '24px';
+      el.style.bottom = '28px';
+      el.style.left = '';
+      el.style.top = '';
+    }
+    
+    function applySavedPosition(el){
+      try{
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (!saved) return false;
+        el.style.position = 'fixed';
+        el.style.left = saved.left + 'px';
+        el.style.top  = saved.top  + 'px';
+        el.style.right = '';
+        el.style.bottom = '';
+        return true;
+      }catch(e){ return false; }
+    }
+    
+    function makeDraggable(el){
+      el.classList.add('draggable-launcher');
+      let dragging=false, startX=0, startY=0, startLeft=0, startTop=0;
+      
+      function pointerDown(ev){
+        dragging = true;
+        const rect = el.getBoundingClientRect();
+        el.style.position = 'fixed';
+        startLeft = rect.left;
+        startTop  = rect.top;
+        startX = (ev.touches ? ev.touches[0].clientX : ev.clientX);
+        startY = (ev.touches ? ev.touches[0].clientY : ev.clientY);
+        el.style.right = '';
+        el.style.bottom = '';
+        ev.preventDefault();
+      }
+      function pointerMove(ev){
+        if (!dragging) return;
+        const x = (ev.touches ? ev.touches[0].clientX : ev.clientX);
+        const y = (ev.touches ? ev.touches[0].clientY : ev.clientY);
+        let left = startLeft + (x - startX);
+        let top  = startTop  + (y - startY);
+        const vw = window.innerWidth, vh = window.innerHeight;
+        const r = el.getBoundingClientRect();
+        const w = r.width, h = r.height;
+        left = Math.max(8, Math.min(vw - w - 8, left));
+        top  = Math.max(8, Math.min(vh - h - 8, top));
+        el.style.left = left + 'px';
+        el.style.top  = top + 'px';
+      }
+      function pointerUp(){
+        if (!dragging) return;
+        dragging = false;
+        const r = el.getBoundingClientRect();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ left: r.left, top: r.top }));
+      }
+      
+      el.addEventListener('mousedown', pointerDown);
+      el.addEventListener('touchstart', pointerDown, {passive:false});
+      window.addEventListener('mousemove', pointerMove, {passive:false});
+      window.addEventListener('touchmove', pointerMove, {passive:false});
+      window.addEventListener('mouseup', pointerUp);
+      window.addEventListener('touchend', pointerUp);
+    }
+    
+    function init(){
+      const el = findLauncher();
+      if (!el) return false;
+      if (!applySavedPosition(el)) pinDefault(el);
+      makeDraggable(el);
+      return true;
+    }
+    
+    if (!init()){
+      const obs = new MutationObserver(() => { if (init()) obs.disconnect(); });
+      obs.observe(document.documentElement, { childList:true, subtree:true });
+    }
+  })();
+  </script>
+
+  
 
   </body>
   </html>

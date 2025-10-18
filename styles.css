@@ -1,0 +1,34 @@
+/* Move chatbot button to bottom-right */
+#neurox-chatbot-btn, .neurox-chatbot-btn {
+  position: fixed !important;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+}
+
+/* keep it comfy on phones */
+@media (max-width: 640px){
+  #neurox-chatbot-btn, .neurox-chatbot-btn {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+/* Default placement for Ask Neuro X launcher */
+#ask-neurox, .neurox-widget-button {
+  position: fixed !important;
+  right: 24px !important;
+  bottom: 28px !important;
+  z-index: 2147483647 !important;
+}
+
+/* Drag cursor for launcher */
+.draggable-launcher { cursor: grab; }
+.draggable-launcher:active { cursor: grabbing; }
+
+@media (max-width: 640px){
+  #ask-neurox, .neurox-widget-button {
+    right: 16px !important;
+    bottom: 16px !important;
+  }
+}
