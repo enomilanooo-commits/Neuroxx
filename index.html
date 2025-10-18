@@ -302,17 +302,18 @@
       .kpi, .kpi::after{ transition: none; animation: none !important; }
     }
     /* ==== Products (io.net style glowing tiles) ==== */
-    .products { 
-      position: relative;
-      overflow: hidden;
-      max-width:1180px; margin:0 auto; padding:56px 18px;
+    .products { max-width:1180px; margin:0 auto; padding:56px 18px; }
+    /* ===== Products section background & overlay ===== */
+    .section-products{ position:relative; overflow:hidden; border-radius:20px; }
+    .section-products{ 
       background:
         linear-gradient(180deg, rgba(6,11,18,.82), rgba(6,11,18,.92)),
         url('assets/products-bg.jpg') center/cover no-repeat;
-      border: 1px solid var(--line);
-      border-radius: 20px;
       box-shadow: var(--shadow);
+      border: 1px solid var(--line);
     }
+    .section-products::before{ content:""; position:absolute; inset:0; z-index:0 }
+    .section-products > *{ position:relative; z-index:1 }
     .products h2 { font-size:28px; margin:0 0 10px; }
     .prod-grid { display:grid; gap:18px; grid-template-columns:repeat(3,1fr); }
     @media (max-width:980px){ .prod-grid{ grid-template-columns:1fr; } }
@@ -688,7 +689,7 @@
     </div>
   </section>
 
-  <section class="products" id="products">
+  <section class="products section-products" id="products">
     <h2>Products</h2>
     <p class="muted">Choose a purpose-built bot and start fast.</p>
     <div class="prod-grid" style="margin-top:16px">
@@ -958,6 +959,7 @@
 
   </body>
   </html>
+
 
 
 
