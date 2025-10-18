@@ -227,6 +227,14 @@
     .nav a.active { color: #e9f4ff; text-decoration: underline; }
   </style>
   <style>
+    /* Mobile fixes for KPI cards in hero */
+    @media (max-width: 768px){
+      h1, h2, h3, h4, h5, h6, p { overflow-wrap: anywhere; text-align:center }
+      .hero .grid{ display:grid; grid-template-columns: 1fr !important; gap:12px }
+      .hero .grid .card{ grid-column: 1 / -1; width:100% }
+    }
+  </style>
+  <style>
     /* About cards: neon flash on hover */
     #about .card{
       position:relative;
