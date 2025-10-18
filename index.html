@@ -633,6 +633,9 @@
     </div>
     <!-- Mobile drawer -->
     <div class="drawer" id="drawer" role="dialog" aria-label="Mobile menu">
+      <a href="#products">Product</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About us</a>
     </div>
   </header>
 
@@ -1013,16 +1016,18 @@
       let dragging=false, startX=0, startY=0, startLeft=0, startTop=0;
       
       function pointerDown(ev){
+        const isTouch = !!ev.touches;
         dragging = true;
         const rect = el.getBoundingClientRect();
         el.style.position = 'fixed';
         startLeft = rect.left;
         startTop  = rect.top;
-        startX = (ev.touches ? ev.touches[0].clientX : ev.clientX);
-        startY = (ev.touches ? ev.touches[0].clientY : ev.clientY);
+        startX = (isTouch ? ev.touches[0].clientX : ev.clientX);
+        startY = (isTouch ? ev.touches[0].clientY : ev.clientY);
         el.style.right = '';
         el.style.bottom = '';
-        ev.preventDefault();
+        // Do not preventDefault on touchstart to keep tap clickable
+        if (!isTouch) ev.preventDefault();
       }
       function pointerMove(ev){
         if (!dragging) return;
@@ -1046,7 +1051,8 @@
       }
       
       el.addEventListener('mousedown', pointerDown);
-      el.addEventListener('touchstart', pointerDown, {passive:false});
+      // On touch, use passive:true so taps still click; we preventDefault later only during real drag in move
+      el.addEventListener('touchstart', pointerDown, {passive:true});
       window.addEventListener('mousemove', pointerMove, {passive:false});
       window.addEventListener('touchmove', pointerMove, {passive:false});
       window.addEventListener('mouseup', pointerUp);
@@ -1072,8 +1078,6 @@
 
   </body>
   </html>
-
-
 
 
 
