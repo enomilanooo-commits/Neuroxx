@@ -157,21 +157,13 @@
       text-shadow: 0 2px 6px rgba(0,0,0,.5), 0 1px 0 rgba(0,0,0,.35);
     }
 
-    /* Lead paragraph under H1 */
-    .hero p{
+    /* Lead paragraph under H1 (no background, slightly larger text) */
+    .hero-wrap > p{
       max-width: 780px;
       margin: 0 auto 10px;
-      color: #eef5ff;             /* brighter for contrast */
-      font-size: clamp(15px, 1.9vw, 18px);
-      /* subtle background chip for readability */
-      background: rgba(10,18,27,.22);
-      border: 1px solid #000;
-      backdrop-filter: saturate(140%) blur(6px);
-      padding: 10px 12px;
-      border-radius: 12px;
-      display: inline-block;
+      color: #eef5ff;
+      font-size: clamp(16px, 2.2vw, 20px);
       text-align: center;
-      box-shadow: 0 6px 18px rgba(0,0,0,.22);
     }
 
     /* Eyebrow chip */
