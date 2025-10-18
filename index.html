@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -10,11 +10,11 @@
   <meta name="theme-color" content="#060b12" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://neurox.one/" />
-  <meta property="og:title" content="Neuro X â€” AI Assistants for Service Businesses" />
+  <meta property="og:title" content="Neuro X — AI Assistants for Service Businesses" />
   <meta property="og:description" content="Neuro X builds fast, modern websites and 24/7 AI assistants that qualify, quote, book and hand off." />
   <meta property="og:image" content="https://neurox.one/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Neuro X â€” AI Assistants for Service Businesses" />
+  <meta name="twitter:title" content="Neuro X — AI Assistants for Service Businesses" />
   <meta name="twitter:description" content="Neuro X builds fast, modern websites and 24/7 AI assistants that qualify, quote, book and hand off." />
   <meta name="twitter:image" content="https://neurox.one/og.png" />
   <link rel="preload" href="assets/hero-bg.jpg" as="image" fetchpriority="high">
@@ -552,6 +552,13 @@
     }
   </style>
   <style>
+    /* KPI strip tuning: slightly smaller text and tighter cards */
+    .hero .kpi{ padding:12px 14px }
+    .hero .kpi h3{ font-size:18px; line-height:1.1; margin:0 0 6px }
+    .hero .kpi p{ font-size:13.5px; line-height:1.45 }
+    @media (min-width: 769px){ .hero .grid{ gap:10px !important } }
+  </style>
+  <style>
     /* ===== Premium chip: ambient glow + parallax + grid ===== */
     .icon.avatar{
       display:grid; place-items:center; position:relative; overflow:hidden;
@@ -635,10 +642,10 @@
       
 
       <!-- KPI strip -->
-      <div class="grid" style="margin-top:18px;grid-template-columns:repeat(12,1fr);gap:12px">
+      <div class="grid" style="margin-top:16px;grid-template-columns:repeat(12,1fr);gap:10px">
         <div class="card kpi" style="grid-column:span 4">
           <h3>1000 concurrency</h3>
-          <p>Handle up to 1,000 conversations at the same time — a human agent typically juggles only 23 at once</p>
+          <p>Handle up to 1,000 conversations at the same time � a human agent typically juggles only 23 at once</p>
         </div>
         <div class="card kpi" style="grid-column:span 4">
           <h3>24/7, no wait</h3>
@@ -948,6 +955,7 @@
 
   </body>
   </html>
+
 
 
 
