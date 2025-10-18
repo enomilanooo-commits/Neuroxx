@@ -18,6 +18,7 @@
   <meta name="twitter:description" content="Neuro X builds fast, modern websites and 24/7 AI assistants that qualify, quote, book and hand off." />
   <meta name="twitter:image" content="https://neurox.one/og.png" />
   <link rel="preload" href="assets/hero-bg.jpg" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/products-bg.jpg" as="image">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -301,7 +302,17 @@
       .kpi, .kpi::after{ transition: none; animation: none !important; }
     }
     /* ==== Products (io.net style glowing tiles) ==== */
-    .products { max-width:1180px; margin:0 auto; padding:56px 18px; }
+    .products { 
+      position: relative;
+      overflow: hidden;
+      max-width:1180px; margin:0 auto; padding:56px 18px;
+      background:
+        linear-gradient(180deg, rgba(6,11,18,.82), rgba(6,11,18,.92)),
+        url('assets/products-bg.jpg') center/cover no-repeat;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
     .products h2 { font-size:28px; margin:0 0 10px; }
     .prod-grid { display:grid; gap:18px; grid-template-columns:repeat(3,1fr); }
     @media (max-width:980px){ .prod-grid{ grid-template-columns:1fr; } }
